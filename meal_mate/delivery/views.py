@@ -5,3 +5,7 @@ from django.http import HttpResponse
 
 def home_page(request):
     return render(request, 'index.html')
+
+def handle_signup(request):
+    # your signup logic here
+    return render(request, 'signup.html')
