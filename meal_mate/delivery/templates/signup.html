@@ -7,12 +7,8 @@
 <body>
     <h3>Sign in below:</h3>
 
-    <!-- action="{% url 'handle_signup' %}" tells Django where to send the form data.
-    The {% url %} template tag dynamically resolves the URL for the view named handle_signup.-->
-    <form method="POST" action="{% url 'handle_signup' %}">
-
-        <!--{% csrf_token %} ensures the form is secure and protects against Cross-Site Request Forgery attacks.-->
-        {% csrf_token %}  
+    
+    <form>
         <label>Username</label>
         <input type="text" name="username" required>
         <br><br>
