@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Customer
 
 # Create your views here.
 
@@ -13,3 +14,37 @@ def open_signin(request):
 
 def open_signup(request):
     return render(request, "signup.html")
+
+def signup(request):
+    #return HttpResponse("Recieved")
+    if request.method == 'POST':
+        # Fetching data from the form
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        email = request.POST.get('email')
+        mobile = request.POST.get('mobile')
+        address = request.POST.get('address')
+
+        #creating a customer table
+        Customer.objects.create(username = username,
+                                password = password,
+                                email = email,
+                                mobile = mobile,
+                                address = address)
+        return render(request, 'signin.html')
+
+def signin(request):
+    if request.method == 'POST':
+        # Fetching data from the form
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        try:
+            # Check if a user exists with the provided credentials
+            customer = Customer.objects.get(username=username, password=password)
+            return render(request, 'success.html', {'customer': customer})
+        except Customer.DoesNotExist:
+            # If credentials are invalid, show a failure page
+            return render(request, 'fail.html')
+    else:
+        return HttpResponse("Invalid request")
