@@ -25,13 +25,18 @@ def signup(request):
         mobile = request.POST.get('mobile')
         address = request.POST.get('address')
 
+        try:
+            Customer.objects.get(username=username)
+            return HttpResponse("username alredy taken. please use other")
+        
+        except:
         #creating a customer table
-        Customer.objects.create(username = username,
+            Customer.objects.create(username = username,
                                 password = password,
                                 email = email,
                                 mobile = mobile,
                                 address = address)
-        return render(request, 'signin.html')
+            return render(request, 'signin.html')
 
 def signin(request):
     if request.method == 'POST':
@@ -42,7 +47,10 @@ def signin(request):
         try:
             # Check if a user exists with the provided credentials
             customer = Customer.objects.get(username=username, password=password)
-            return render(request, 'success.html', {'customer': customer})
+            if username == 'admin':
+                return render(request, 'admin_home.html', {'customer': customer})
+            else:
+                return render(request, 'customer_home.html')
         except Customer.DoesNotExist:
             # If credentials are invalid, show a failure page
             return render(request, 'fail.html')

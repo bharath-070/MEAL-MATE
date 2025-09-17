@@ -6,3 +6,4 @@ db.sqlite3
 .DS_Store
 .env
 samp.html
+meal_mate/delivery/Meal mate.code-workspace
