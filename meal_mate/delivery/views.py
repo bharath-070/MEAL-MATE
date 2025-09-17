@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Customer
+from .models import Customer, Restaurant
 
 # Create your views here.
 
@@ -58,5 +58,29 @@ def signin(request):
         return HttpResponse("Invalid request")
     
 # adding new restaurants
-def add_restaurant_page(request):
+def open_add_restaurant(request):
     return render(request, 'add_restaurant.html')
+
+def open_show_restaurant(request):
+    return render(request,'show_restaurant.html')
+
+def add_restaurant(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        picture = request.POST.get('picture')
+        cuisine = request.POST.get('cuisine')
+        rating = request.POST.get('rating')
+
+        try:
+            Restaurant.objects.get(name = name)
+            return HttpResponse("Restaurant already exsits")
+        except:
+            Restaurant.objects.create(name = name,
+                                       picture = picture,
+                                       cuisine = cuisine,
+                                       rating = rating)
+            
+            #collecting all data to a variable
+            restaurants = Restaurant.objects.all()
+            #sending all objects data to frontend
+            return render(request, 'show_restaurants.html', {"restaurants" : restaurants})
