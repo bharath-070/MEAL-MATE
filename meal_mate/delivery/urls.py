@@ -8,7 +8,9 @@ urlpatterns = [
     path('open_signup/', views.open_signup, name='open_signup'),
     path('signup/', views.signup, name = 'signup'),
     path('signin/', views.signin, name = 'signin'),
+    path('signin/add_restaurant_page', views.add_restaurant_page, name = 'add_restaurant_page'),
 ]
 
 
 #https://github.com/Gamana/MealMatebuddy
+#https://github.com/Gamana/Practicemealmate

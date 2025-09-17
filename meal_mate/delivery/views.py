@@ -56,3 +56,7 @@ def signin(request):
             return render(request, 'fail.html')
     else:
         return HttpResponse("Invalid request")
+    
+# adding new restaurants
+def add_restaurant_page(request):
+    return render(request, 'add_restaurant.html')
