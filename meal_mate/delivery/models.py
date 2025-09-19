@@ -13,3 +13,11 @@ class Restaurant(models.Model):
     picture = models.URLField(max_length=200, default="https://plus.unsplash.com/premium_photo-1661883237884-263e8de8869b?q=80&w=889&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D 889w")
     cuisine = models.CharField(max_length=200)
     rating = models.FloatField()
+
+class Item(models.Model):
+    restaurant = models.ForeignKey(Restaurant, on_delete = models.CASCADE, related_name = "items")
+    name = models.CharField(max_length = 20)
+    picture = models.URLField(max_length = 200, default="https://cdn-icons-png.flaticon.com/512/1147/1147856.png")
+    description = models.CharField(max_length = 200)
+    price = models.FloatField()
+    is_veg = models.BooleanField(default = True)
