@@ -1,34 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <title>Sign Up</title>
 </head>
 <body>
-    <h3>Sign in below:</h3>
-    <form method="POST" action="{% url 'signup' %}">
+    <h3>Sign up below:</h3>
+    <form method="post" action="{% url 'signup' %}">
         {% csrf_token %}
-        <label>Username</label>
-        <input type="text" name="username" required>
+        <label>Username </label>
+        <input type="text" name="username">
         <br><br>
-        
-        <label>Password</label>
-        <input type="password" name="password" required>
+        <label>Password </label>
+        <input type="password" name="password">
         <br><br>
-        
-        <label>Email</label>
-        <input type="email" name="email" required>
+        <label>Email </label>
+        <input type="email" name="email">
         <br><br>
-        
-        <label>Mobile</label>
-        <input type="text" name="mobile" required>
+        <label>Mobile </label>
+        <input type="text" name="mobile">
         <br><br>
-        
-        <label>Address</label>
-        <textarea name="address" required></textarea>
+        <label>Address </label>
+        <textarea name="address"></textarea>
         <br><br>
-        
-        <button type="submit">Sign Up</button>
+        <button type="submit">SIGN UP</button>
     </form>
 </body>
 </html>
