@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
     <title>Sign Up</title>
 </head>
 <body>
     <h3>Sign up below:</h3>
-    <form method="post" action="{% url 'signup' %}">
+    <form method="POST" action="{% url 'handle_signup' %}">
         {% csrf_token %}
         <label>Username </label>
         <input type="text" name="username">

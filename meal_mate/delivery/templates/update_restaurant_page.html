@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>update Restaurant</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Document</title>
 </head>
 <body>
-    <!-- Hello
-    {{restaurant.id}}
-    {{restaurant.name}} -->
     <form method="POST" action="{% url 'update_restaurant' restaurant.id %}">
 
         {% csrf_token %}
@@ -26,5 +25,6 @@
     
         <button type="submit">Update Restaurant</button>
     </form>
+    
 </body>
 </html>

@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>admin page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Admin HOME</title>
 </head>
 <body>
+
     <h1>Welcome ADMIN!</h1>
-    <a href="open_add_restaurant">Add new Restaurant</a>
-    <br>
-    <br>
-    <a href="open_show_restaurant">Show Restaurants</a>
+    <a href="{% url 'add_restaurant_page' %}">Add new Restaurant</a>
+    <a href="{% url 'show_restaurant_page' %}">Show Restaurants</a>
+
 </body>
 </html>

@@ -1,28 +1,33 @@
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from . import views
-
+ 
 urlpatterns = [
-    path('',views.index),
-    path('open_signin/', views.open_signin, name='open_signin'),
-    path('open_signup/', views.open_signup, name='open_signup'),
-    path('signup/', views.signup, name = 'signup'),
-    path('signin/', views.signin, name = 'signin'),
-    path('signin/open_add_restaurant', views.open_add_restaurant, name = 'open_add_restaurant'),
-    path('signin/open_show_restaurant', views.open_show_restaurant, name = 'open_show_restaurant'),
-    path('add_restaurant', views.add_restaurant, name='add_restaurant'),
-    path('add_restaurant/open_update_restaurant/<int:restaurant_id>',
-        views.open_update_restaurant,
-        name = 'open_update_restaurant'),
-     path('update_restaurant/<int:restaurant_id>',
-         views.update_restaurant,
-         name="update_restaurant"),
-    path('delete_restaurant/<int:restaurant_id>',views.delete_restaurant,name="delete_restaurant") ,
-    path('open_update_menu/<int:restaurant_id>', views.open_update_menu, name='open_update_menu'), 
-    path('update_menu/<int:restaurant_id>',views.update_menu,name='update_menu'),
-    path('view_menu/<int:restaurant_id>',views.view_menu,name='view_menu'),
+    # Home and authentication paths
+    path('', views.index, name='index'),
+    path('signin/', views.signin, name='signin'),
+    path('signup/', views.signup, name='signup'),
+    path('login/', views.handle_login, name='handle_login'),
+    path('signup/submit/', views.handle_signup, name='handle_signup'),
+
+    # Restaurant-related paths
+    path('restaurants/add', views.add_restaurant_page, name='add_restaurant_page'),
+    path('restaurants/', views.show_restaurant_page, name='show_restaurant_page'),
+    path('restaurants/add/', views.add_restaurant, name='add_restaurant'),
+    path('restaurants/<int:restaurant_id>/menu/', views.restaurant_menu, name='restaurant_menu'),
+    path('restaurants/<int:restaurant_id>/update/', views.update_restaurant, name='update_restaurant'),
+    path('restaurants/<int:restaurant_id>/update/page/', views.update_restaurant_page, name='update_restaurant_page'),
+    path('restaurants/<int:restaurant_id>/delete/', views.delete_restaurant, name='delete_restaurant'),
+
+    path('menu/<int:menuItem_id>/update/', views.update_menuItem, name='update_menuItem'),
+    path('menu/<int:menuItem_id>/update/page/', views.update_menuItem_page, name='update_menuItem_page'),
+    path('menu/<int:menuItem_id>/delete/', views.delete_menuItem, name='delete_menuItem'),
+
+    path('restaurants/<int:restaurant_id>/menu/customer/<str:username>/', views.customer_menu, name='customer_menu'),
+    path('cart/<str:username>/', views.show_cart_page, name='show_cart_page'),
+    path('cart/<int:item_id>/add/<str:username>/', views.add_to_cart, name='add_to_cart'),
+
+    path('checkout/<str:username>/', views.checkout, name='checkout'),
+
+    path('orders/<str:username>/', views.orders, name='orders'),
+
 ]
-
-
-#https://github.com/Gamana/MealMatebuddy
-#https://github.com/Gamana/Practicemealmate
